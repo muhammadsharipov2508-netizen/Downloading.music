@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaso Downloader - Download TikTok & Instagram Videos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>🎬 Vaso Downloader</h1>
+                <p class="tagline">Download TikTok & Instagram Videos Instantly</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Welcome Section -->
+            <section class="welcome-section">
+                <h2>Download Your Favorite Videos</h2>
+                <p>Paste a TikTok or Instagram link below and choose your preferred format</p>
+            </section>
+
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="urlInput" 
+                        placeholder="Paste TikTok or Instagram link here..." 
+                        class="url-input"
+                    >
+                    <button id="analyzeBtn" class="btn btn-primary">
+                        <span class="btn-text">Analyze</span>
+                        <span class="btn-loader" id="btnLoader" style="display: none;">
+                            <span class="spinner"></span>
+                        </span>
+                    </button>
+                </div>
+                <!-- Error Message Container -->
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section" style="display: none;">
+                <!-- Video Information Card -->
+                <div class="video-info-card">
+                    <div class="thumbnail-wrapper">
+                        <img id="thumbnail" src="" alt="Video Thumbnail" class="thumbnail">
+                        <span id="duration" class="duration-badge">--:--</span>
+                    </div>
+                    <div class="video-details">
+                        <h3 id="videoTitle" class="video-title">Video Title</h3>
+                        <p id="videoDescription" class="video-description">Description</p>
+                        <div class="video-meta">
+                            <span id="videoPlatform" class="platform-badge">TikTok</span>
+                            <span id="videoDate" class="date-badge">--</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Download Options -->
+                <div class="download-options">
+                    <h3 class="options-title">Select Download Format</h3>
+                    <div class="options-grid" id="optionsGrid">
+                        <!-- Download options will be generated here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Loading Animation for Downloads -->
+                <div id="downloadLoader" class="download-loader" style="display: none;">
+                    <div class="loader-content">
+                        <div class="loader-spinner"></div>
+                        <p id="loaderText">Processing your download...</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="info-section">
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="info-icon">📱</div>
+                        <h3>Easy to Use</h3>
+                        <p>Simply paste a link and choose your format</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">⚡</div>
+                        <h3>Fast Processing</h3>
+                        <p>Quick analysis and instant downloads</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🔒</div>
+                        <h3>Secure</h3>
+                        <p>Your data is processed safely and privately</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Vaso Downloader</h4>
+                    <p>Download videos from TikTok and Instagram with ease</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Supported Platforms</h4>
+                    <ul>
+                        <li>TikTok</li>
+                        <li>Instagram</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Formats</h4>
+                    <ul>
+                        <li>MP4 HD Video</li>
+                        <li>MP3 Audio</li>
+                        <li>No Watermark</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Vaso Downloader. All rights reserved.</p>
+                <p>Made with ❤️ for content enthusiasts</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
