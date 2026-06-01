@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube to MP3 Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1>🎵 YouTube to MP3</h1>
+                <p class="subtitle">Convert your favorite YouTube videos to MP3</p>
+            </div>
+            
+            <form id="downloadForm" class="form">
+                <div class="form-group">
+                    <label for="urlInput">YouTube URL:</label>
+                    <input 
+                        type="text" 
+                        id="urlInput" 
+                        placeholder="https://www.youtube.com/watch?v=..." 
+                        required
+                        class="input-field"
+                    >
+                </div>
+                
+                <button type="submit" id="downloadBtn" class="btn btn-primary">
+                    <span id="btnText">Download MP3</span>
+                    <span id="spinner" class="spinner" style="display:none;"></span>
+                </button>
+            </form>
+            
+            <div id="result" class="result-container" style="display:none;">
+                <div id="resultContent"></div>
+            </div>
+            
+            <div id="error" class="error-message" style="display:none;"></div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('downloadForm');
+        const urlInput = document.getElementById('urlInput');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const spinner = document.getElementById('spinner');
+        const btnText = document.getElementById('btnText');
+        const resultDiv = document.getElementById('result');
+        const resultContent = document.getElementById('resultContent');
+        const errorDiv = document.getElementById('error');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const url = urlInput.value.trim();
+            
+            // Reset UI
+            errorDiv.style.display = 'none';
+            resultDiv.style.display = 'none';
+            
+            if (!url) {
+                showError('Please enter a YouTube URL');
+                return;
+            }
+            
+            // Show loading state
+            downloadBtn.disabled = true;
+            spinner.style.display = 'inline-block';
+            btnText.textContent = 'Converting...';
+            
+            try {
+                const response = await fetch('/download', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url: url })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult(data);
+                    urlInput.value = '';
+                } else {
+                    showError(data.error || 'An error occurred during conversion');
+                }
+            } catch (error) {
+                showError('Network error: ' + error.message);
+            } finally {
+                downloadBtn.disabled = false;
+                spinner.style.display = 'none';
+                btnText.textContent = 'Download MP3';
+            }
+        });
+        
+        function showError(message) {
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            resultDiv.style.display = 'none';
+        }
+        
+        function showResult(data) {
+            resultContent.innerHTML = `
+                <div class="success-icon">✓</div>
+                <h3>Conversion Successful!</h3>
+                <p class="song-title">${data.title}</p>
+                <a href="/download-file/${data.filename}" class="btn btn-success">
+                    ⬇️ Download ${data.filename}
+                </a>
+            `;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

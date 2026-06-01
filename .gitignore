@@ -1,43 +1,47 @@
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Dependencies
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build outputs
-dist/
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
 build/
-*.out
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
-# OS files
-.DS_Store
-Thumbs.db
-*.tmp
+# Flask
+instance/
+.webassets-cache
 
 # IDE
 .vscode/
 .idea/
-*.sublime-project
-*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment
+.env
+.env.local
+
+# Downloaded files
+downloads/
+*.mp3
 
 # Logs
-logs/
 *.log
-
-# Cache
-.cache/
-.eslintcache
-
-# Temp files
-temp/
-tmp/
-*.temp
-
-# Downloaded videos (optional)
-downloads/
-videos/
